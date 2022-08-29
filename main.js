@@ -5,6 +5,54 @@ const FULL_HEART = '♥'
 // Your JavaScript code goes here!
 
 
+const articleHearts = document.querySelectorAll(".like-glyph");
+
+for(const glyph of articleHearts){
+  glyph.addEventListener("click",likeBtn)
+}
+
+//code to hide  the error status bar 
+modal.classList.add("hidden")
+//function when a heart is clicked
+function likeBtn(event){
+  const heart= event.target
+
+  mimicServerCall()
+  
+  .then(()=>{
+    if(heart.innerText ===EMPTY_HEART){
+
+      heart.innerText=FULL_HEART
+      heart.classList="activated-heart"
+    }
+    else{
+      heart.innerText = FULL_HEART;
+      heart.classList.remove("activated-heart")
+    }
+  
+  })
+
+  .catch(()=>{
+    modal.classList.remove("hidden")
+    const modal = document.getElementById("modal");
+    modal.classList = "";
+    modal.querySelector('h2').innerText = error;
+    setTimeout(() => {modal.classList.add("hidden")}, 3000);
+  })
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //------------------------------------------------------------------------------
